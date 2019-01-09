@@ -1,0 +1,20 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+<h:head>
+<title>Update value in Database</title>
+<link href="./css/styles.css" rel="stylesheet" type="text/css"/>
+</h:head>
+<h:body>
+<h1 class="title">Update value in Database</h1>
+
+<h:form>
+	Update user.<br/>
+	User ID:<h:inputText value="#{updateUserController.id}"/><br/>
+	<b>New</b> first name:<h:inputText value="#{updateUserController.firstName}"/><br/>
+	<b>New</b> last name:<h:inputText value="#{updateUserController.lastName}"/><br/>
+	<h:commandButton value="update user" action="#{updateUserController.update}"/>
+</h:form>
+
+</h:body></html>

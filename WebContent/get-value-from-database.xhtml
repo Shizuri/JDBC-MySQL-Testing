@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+<h:head>
+<title>Get value from DB</title>
+<link href="./css/styles.css" rel="stylesheet" type="text/css"/>
+</h:head>
+<h:body>
+<h1 class="title">Get value from DB</h1>
+
+<h:form>
+	Press the button to get a value from a database:
+	<h:commandButton value="get" action="#{dbValueGetter.retrieve}"/>
+</h:form>
+
+<h:form>
+	What User ID do you want to see?<br/>
+	<h:inputText value="#{dbValueGetter.id}"/><br/>
+	<h:commandButton value="get user" action="#{dbValueGetter.findUser}"/>
+</h:form>
+
+</h:body></html>

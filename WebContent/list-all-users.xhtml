@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+<title>List all users in a Database table</title>
+<link href="./css/styles.css" rel="stylesheet" type="text/css"/>
+</h:head>
+<h:body>
+<h1 class="title">List all users in a Database table</h1>
+
+
+printing users [ToString] here:
+<ul>
+	<ui:repeat var="user" value="#{listUsersController.usersList}">
+		<li>#{user}</li>
+	</ui:repeat>
+</ul>
+<hr/>
+printing users from internal values here:
+<ul>
+	<ui:repeat var="user" value="#{listUsersController.usersList}">
+		<li><b>First Name:</b> #{user. firstName} <b>Last Name:</b> #{user.lastName} <b>ID:</b> #{user.id}</li>
+	</ui:repeat>
+</ul>
+	
+
+
+</h:body></html>
