@@ -20,4 +20,11 @@
 	<h:commandButton value="get user" action="#{dbValueGetter.findUser}"/>
 </h:form>
 
+<h:form>
+	This time with a prepared statement
+	What User ID do you want to see? (they start from 1)<br/>
+	<h:inputText value="#{dbValueGetter.id}"/><br/>
+	<h:commandButton value="get user" action="#{dbValueGetter.findUserWithPS}"/>
+</h:form>
+
 </h:body></html>

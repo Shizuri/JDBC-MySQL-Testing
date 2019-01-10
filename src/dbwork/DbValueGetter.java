@@ -2,6 +2,7 @@ package dbwork;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -13,7 +14,8 @@ public class DbValueGetter {
 
 	private String value;
 	
-	private String id, firstName, lastName;
+	private String firstName, lastName;
+	private int id;
 
 	public String getValue() {
 		return value;
@@ -23,14 +25,13 @@ public class DbValueGetter {
 		this.value = value;
 	}
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
-
 
 	public String getFirstName() {
 		return firstName;
@@ -123,6 +124,51 @@ public class DbValueGetter {
 		    if (myStmt != null) {
 		        try {
 		        	myStmt.close();
+		        } catch (SQLException e) { /* ignored */}
+		    }
+		    if (myConn != null) {
+		        try {
+		        	myConn.close();
+		        } catch (SQLException e) { /* ignored */}
+		    }
+		}
+		
+		return "find-user";
+	}
+	
+	public String findUserWithPS() {
+		Connection myConn = null;
+		PreparedStatement myPrepStmt = null; //<-- PreparedStatement, NOT Statement
+		ResultSet myRs = null;
+		
+		String dbUrl = "jdbc:mysql://localhost:3306/test2";
+		String user = "user1";
+		String password = "test2";
+		
+		try {
+			myConn = DriverManager.getConnection(dbUrl, user, password);
+			myPrepStmt = myConn.prepareStatement("select * from user where user_id = ?");
+			myPrepStmt.setInt(1, id);
+			myRs = myPrepStmt.executeQuery();
+			
+			while(myRs.next()) {
+				value = myRs.getString("first_name");
+				firstName = myRs.getString("first_name");
+				lastName = myRs.getString("last_name");
+				System.out.println("First name: " + myRs.getString("first_name") + " Last name: " + myRs.getString("last_name") + " ID: " + myRs.getInt("user_id"));
+			}
+		} catch (Exception e) {
+			System.out.println("PROBLEM");
+			System.out.println(e.getLocalizedMessage());
+		} finally {
+		    if (myRs != null) {
+		        try {
+		        	myRs.close();
+		        } catch (SQLException e) { /* ignored */}
+		    }
+		    if (myPrepStmt != null) {
+		        try {
+		        	myPrepStmt.close();
 		        } catch (SQLException e) { /* ignored */}
 		    }
 		    if (myConn != null) {
