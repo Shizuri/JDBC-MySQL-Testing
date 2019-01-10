@@ -10,12 +10,12 @@
 <h1 class="title">Get value from DB</h1>
 
 <h:form>
-	Press the button to get a value from a database:
+	Press the button to get a value from a database (value should be "Bruce"):
 	<h:commandButton value="get" action="#{dbValueGetter.retrieve}"/>
 </h:form>
 
 <h:form>
-	What User ID do you want to see?<br/>
+	What User ID do you want to see? (they start from 1)<br/>
 	<h:inputText value="#{dbValueGetter.id}"/><br/>
 	<h:commandButton value="get user" action="#{dbValueGetter.findUser}"/>
 </h:form>

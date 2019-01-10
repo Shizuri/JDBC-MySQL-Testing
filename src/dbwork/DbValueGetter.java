@@ -63,8 +63,6 @@ public class DbValueGetter {
 			myStmt = myConn.createStatement();
 			myRs = myStmt.executeQuery("select * from user where first_name='Bruce'");
 			
-			
-			
 			while(myRs.next()) {
 				value = myRs.getString("first_name");
 				System.out.println("First name: " + myRs.getString("first_name") + " Last name: " + myRs.getString("last_name") + " ID: " + myRs.getInt("user_id"));
@@ -116,6 +114,22 @@ public class DbValueGetter {
 		} catch (Exception e) {
 			System.out.println("PROBLEM");
 			System.out.println(e.getLocalizedMessage());
+		} finally {
+		    if (myRs != null) {
+		        try {
+		        	myRs.close();
+		        } catch (SQLException e) { /* ignored */}
+		    }
+		    if (myStmt != null) {
+		        try {
+		        	myStmt.close();
+		        } catch (SQLException e) { /* ignored */}
+		    }
+		    if (myConn != null) {
+		        try {
+		        	myConn.close();
+		        } catch (SQLException e) { /* ignored */}
+		    }
 		}
 		
 		return "find-user";

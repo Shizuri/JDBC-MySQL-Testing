@@ -32,8 +32,6 @@ public class ListUsersController {
 			myStmt = myConn.createStatement();
 			myRs = myStmt.executeQuery("select * from user");
 			
-			
-			
 			while(myRs.next()) {
 				String firstName = myRs.getString("first_name");
 				String lastName = myRs.getString("last_name");

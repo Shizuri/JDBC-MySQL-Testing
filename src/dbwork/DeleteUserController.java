@@ -7,32 +7,23 @@ import java.sql.Statement;
 
 import javax.faces.bean.ManagedBean;
 
-@ManagedBean(name="cuc")
-public class CreateUserController {
+@ManagedBean
+public class DeleteUserController {
 
-	private String firstName, lastName;
+	private int id;
 
-	public String getFirstName() {
-		return firstName;
+	public int getId() {
+		return id;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setId(int id) {
+		this.id = id;
 	}
 	
-	public String create() {
+	public String delete() {
 		
 		Connection myConn = null;
 		Statement myStmt = null;
-//		ResultSet myRs = null;
 		
 		String dbUrl = "jdbc:mysql://localhost:3306/test2";
 		String user = "user1";
@@ -41,24 +32,16 @@ public class CreateUserController {
 		try {
 			myConn = DriverManager.getConnection(dbUrl, user, password);
 			myStmt = myConn.createStatement();
-//			myRs = myStmt.executeQuery("select * from user where first_name='Bruce'");
 			
-//			String sql = "insert into user (first_name, last_name, user_id) values(" + firstName + ", " + lastName + ", NULL)";
-			String sql = "insert into user values('" + firstName + "', '" + lastName + "', NULL)";
-			System.out.println(sql);
-			
+			//above this is boilerplate text that is repeated every time I work with JDBC.
+			String sql = "DELETE FROM user WHERE user_id='" + id + "'";
 			myStmt.executeUpdate(sql);
+			//below this is boilerplate text that is repeated every time I work with JDBC.
 			
-			System.out.println("insert complete");
 		} catch (Exception e) {
 			System.out.println("PROBLEM");
 			System.out.println(e.getLocalizedMessage());
 		} finally {
-//		    if (myRs != null) {
-//		        try {
-//		        	myRs.close();
-//		        } catch (SQLException e) { /* ignored */}
-//		    }
 		    if (myStmt != null) {
 		        try {
 		        	myStmt.close();

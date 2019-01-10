@@ -1,0 +1,18 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+<h:head>
+<title>Delete from Database</title>
+<link href="./css/styles.css" rel="stylesheet" type="text/css"/>
+</h:head>
+<h:body>
+<h1 class="title">Delete from Database</h1>
+
+<h:form>
+	Delete a user.<br/>
+	ID of user to delete:<h:inputText value="#{deleteUserController.id}"/><br/>
+	<h:commandButton value="delete user" action="#{deleteUserController.delete}"/>
+</h:form>
+
+</h:body></html>
